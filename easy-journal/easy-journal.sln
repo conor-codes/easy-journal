@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "easy-journal", "easy-journal.csproj", "{FA644863-A1D9-4F83-B662-03280187BA03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA644863-A1D9-4F83-B662-03280187BA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA644863-A1D9-4F83-B662-03280187BA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA644863-A1D9-4F83-B662-03280187BA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA644863-A1D9-4F83-B662-03280187BA03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C3B41F4-1439-4736-8B16-942B9B5AE6C5}
+	EndGlobalSection
+EndGlobal
