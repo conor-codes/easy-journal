@@ -24,7 +24,9 @@ namespace easy_journal.Services.Database
             {
                 if (!_isInitialized)
                 {
-                    await _database.CreateTableAsync<DailyQuoteCache>();
+                    await _database.CreateTableAsync<QuoteCache>();
+                    await _database.CreateTableAsync<EntryCache>();
+
                     _isInitialized = true;
                 }
             }
@@ -39,7 +41,7 @@ namespace easy_journal.Services.Database
         {
             await EnsureDatabaseInitialized();
 
-            var cached = await _database.Table<DailyQuoteCache>()
+            var cached = await _database.Table<QuoteCache>()
                   .Where(q => q.Date == date)
                   .FirstOrDefaultAsync();
 
@@ -57,12 +59,43 @@ namespace easy_journal.Services.Database
         {
             await EnsureDatabaseInitialized();
 
-            var cache = new DailyQuoteCache
+            var cache = new QuoteCache
             {
                 Date = date,
                 QuoteContent = quote.Content,
                 QuoteAuthor = quote.Author,
                 FetchedAt = DateTime.Now
+            };
+
+            await _database.InsertOrReplaceAsync(cache);
+        }
+
+        public async Task<Models.Entry> GetEntryForDate(string date)
+        {
+            await EnsureDatabaseInitialized();
+
+            var cached = await _database.Table<EntryCache>()
+                .Where(q => q.Date == date)
+                .FirstOrDefaultAsync();
+
+            if (cached == null)
+                return null;
+
+            return new Models.Entry
+            {
+                Content = cached.Content,
+                EntryDate = DateTime.Parse(date),
+            };
+        }
+
+        public async Task SaveEntryForDate(string date, Models.Entry entry)
+        {
+            await EnsureDatabaseInitialized();
+
+            var cache = new EntryCache
+            {
+                Date = date,
+                Content = entry.Content,
             };
 
             await _database.InsertOrReplaceAsync(cache);

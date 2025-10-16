@@ -1,4 +1,5 @@
-﻿using easy_journal.Services.Database;
+﻿using easy_journal.Extensions;
+using easy_journal.Services.Database;
 using easy_journal.Servicess.Http;
 using easy_journal.Servicess.Quote.Models;
 
@@ -47,7 +48,7 @@ namespace easy_journal.Services.Quote
 
         public async Task<Models.Quote> GetQuoteOfTheDay()
         {
-            var today = DateTime.Today.ToString("yyyy-MM-dd");
+            var today = DateTime.Today.ToDatabaseDateString();
 
             // Check cache first
             var cached = await _database.GetQuoteForDate(today);

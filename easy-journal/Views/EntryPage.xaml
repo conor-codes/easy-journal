@@ -25,7 +25,7 @@
         <!-- Quote Section -->
         <Border Grid.ColumnSpan="2"
                 Grid.RowSpan="2"
-                HeightRequest="165" 
+                HeightRequest="140" 
                 Stroke="#E0E0E0"
                 Padding="20"
                 StrokeShape="RoundRectangle 10"
@@ -57,7 +57,6 @@
             </Grid>
         </Border>
 
-
         <!-- Streak Section -->
         <Label Text="No entry yet today"
                TextColor="#888888"
@@ -70,10 +69,25 @@
                 StrokeShape="RoundRectangle 10"
                 BackgroundColor="#FAFAFA">
 
-            <Editor Text="{Binding Entry}"
+            <Editor Text="{Binding DailyEntry.Content}"
                    Placeholder="Whats on your mind today?"
                    TextColor="#666666"
-                   HorizontalOptions="Start"/>
+                   BackgroundColor="#FAFAFA"
+                   HorizontalOptions="Fill"/>
         </Border>
+
+        <Label Text="0 / 5000 characters"
+               TextColor="#888888"
+               HorizontalOptions="End"/>
+
+        <Button Text="Save Entry"
+                TextColor="White"
+                FontSize="17"
+                FontAttributes="Bold"
+                Command="{Binding SaveEntryCommand}"
+                BackgroundColor="#2A2A2A"
+                HorizontalOptions="Fill"
+                HeightRequest="50"/>
+
     </VerticalStackLayout>
 </ContentPage>

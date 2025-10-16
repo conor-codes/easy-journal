@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace easy_journal.Models
 {
-    public class DailyQuoteCache
+    public class QuoteCache
     {
         [PrimaryKey]
         public string Date { get; set; } // "2025-01-15"
