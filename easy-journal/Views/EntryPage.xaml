@@ -2,15 +2,78 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="easy_journal.Views.EntryPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Easy Journal"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout
+        Padding="20,15,20,15" Spacing="10">
+        
+        <!-- Title Section -->
+        <VerticalStackLayout Spacing="5"
+                             Margin="0,0,0,3">
+            <Label 
+                Text="Easy Journal"
+                FontSize="23"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
 
-        <Border
-            HeightRequest="300"
-            WidthRequest="300"
-            BackgroundColor="Red"/>
+            <Label 
+                 Text="{Binding CurrentDate, StringFormat='{0:dddd, MMMM dd, yyyy}'}"
+                 FontSize="12"
+                 TextColor="#888888"
+                 VerticalOptions="Center" 
+                 HorizontalOptions="Center" />
+        </VerticalStackLayout>
+        
+        <!-- Quote Section -->
+        <Border Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                HeightRequest="165" 
+                Stroke="#E0E0E0"
+                Padding="20"
+                StrokeShape="RoundRectangle 10"
+                BackgroundColor="#FAFAFA">
+
+            <Grid ColumnDefinitions="*,*" 
+                  RowDefinitions="*,*">
+
+                <Label Text="Quote of the day"
+                       TextTransform="Uppercase"
+                       FontAttributes="Bold"
+                       FontSize="12"
+                       TextColor="#666666"/>
+
+                <Label Text="{Binding DailyQuote.Content, StringFormat='&quot;{0}&quot;'}"
+                       TextColor="#666666"
+                       FontAttributes="Italic "
+                       VerticalOptions="Center"
+                       Grid.ColumnSpan="2"
+                       Grid.RowSpan="2"/>
+
+                <Label Text="{Binding DailyQuote.Author, StringFormat='-- {0}'}"
+                       TextColor="#666666"
+                       FontAttributes="Italic"  
+                       VerticalOptions="End"
+                       HorizontalOptions="End"
+                       Grid.Row="2"
+                       Grid.Column="2"/>
+            </Grid>
+        </Border>
+
+
+        <!-- Streak Section -->
+        <Label Text="No entry yet today"
+               TextColor="#888888"
+               HorizontalOptions="Center"/>
+
+        <!-- Entry Section -->
+        <Border HeightRequest="300" 
+                Stroke="#E0E0E0"
+                Padding="20"
+                StrokeShape="RoundRectangle 10"
+                BackgroundColor="#FAFAFA">
+
+            <Editor Text="{Binding Entry}"
+                   Placeholder="Whats on your mind today?"
+                   TextColor="#666666"
+                   HorizontalOptions="Start"/>
+        </Border>
     </VerticalStackLayout>
 </ContentPage>

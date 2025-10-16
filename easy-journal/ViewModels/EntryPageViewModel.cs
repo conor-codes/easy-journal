@@ -17,15 +17,20 @@ namespace easy_journal.ViewModels
         [ObservableProperty]
         private bool isLoadingQuote;
 
+        [ObservableProperty]
+        private DateTime currentDate;
+
         public EntryPageViewModel(IQuoteService quoteService, IDatabaseService database)
         {
             _quoteService = quoteService;
             _database = database;
+
+            CurrentDate = DateTime.Now;
         }
 
         public async Task Initialize()
         {
-            await LoadQuote();
+            await LoadQuote(); 
         }
 
         private async Task LoadQuote()

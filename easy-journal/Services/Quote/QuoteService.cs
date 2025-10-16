@@ -10,6 +10,35 @@ namespace easy_journal.Services.Quote
         private readonly IDatabaseService _database;
         private const string BASE_URL = "https://api.quotable.io";
 
+        private readonly static List<Models.Quote> _fallbacksQuotes = new()
+        {
+            new Models. Quote
+            {
+                Content = "The only way to do great work is to love what you do.",
+                Author = "Steve Jobs"
+            },
+            new Models. Quote
+            {
+                Content = "Code is like humor. When you have to explain it, it's bad.",
+                Author = "Cory House"
+            },
+            new Models.Quote
+            {
+                Content = "First, solve the problem. Then, write the code.",
+                Author = "John Johnson"
+            },
+            new Models.Quote
+            {
+                Content = "Make it work, make it right, make it fast.",
+                Author = "Kent Beck"
+            },
+            new Models.Quote
+            {
+                Content = "Simplicity is the soul of efficiency.",
+                Author = "Austin Freeman"
+            }
+        };
+
         public QuoteService(IHttpService httpService, IDatabaseService database)
         {
             _httpService = httpService;
@@ -43,7 +72,8 @@ namespace easy_journal.Services.Quote
             }
             catch (Exception ex)
             {
-                // Log error
+                // Log error / TODO: create ILogger
+                System.Diagnostics.Debug.WriteLine($"Failed to fetch quote: {ex.Message}");
                 return GetFallbackQuote();
             }
         }
@@ -59,36 +89,7 @@ namespace easy_journal.Services.Quote
 
         private Models.Quote GetFallbackQuote()
         {
-            var fallbacks = new List<Models.Quote>
-            {
-                new Models. Quote
-                {
-                    Content = "The only way to do great work is to love what you do.",
-                    Author = "Steve Jobs"
-                },
-                new Models. Quote
-                {
-                    Content = "Code is like humor. When you have to explain it, it's bad.",
-                    Author = "Cory House"
-                },
-                new Models.Quote
-                {
-                    Content = "First, solve the problem. Then, write the code.",
-                    Author = "John Johnson"
-                },
-                new Models.Quote
-                {
-                    Content = "Make it work, make it right, make it fast.",
-                    Author = "Kent Beck"
-                },
-                new Models.Quote
-                {
-                    Content = "Simplicity is the soul of efficiency.",
-                    Author = "Austin Freeman"
-                }
-            };
-
-            return fallbacks[Random.Shared.Next(fallbacks.Count)];
+            return _fallbacksQuotes[Random.Shared.Next(_fallbacksQuotes.Count)];
         }
     }
 }
