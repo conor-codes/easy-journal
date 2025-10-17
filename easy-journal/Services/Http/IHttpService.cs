@@ -1,4 +1,4 @@
-﻿namespace easy_journal.Servicess.Http
+﻿namespace easy_journal.Services.Http
 {
     public interface IHttpService
     {

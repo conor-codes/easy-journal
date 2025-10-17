@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace easy_journal.Servicess.Quote.Models
+namespace easy_journal.Services.Quote.Models
 {
     public class QuotableResponse
     {

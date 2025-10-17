@@ -2,7 +2,7 @@
 {
     public interface IQuoteService
     {
-        Task<Models.Quote> GetRandomQuote();
-        Task<Models.Quote> GetQuoteOfTheDay();
+        Task<easy_journal.Models.Quote> GetRandomQuote();
+        Task<easy_journal.Models.Quote> GetQuoteOfTheDay();
     }
 }

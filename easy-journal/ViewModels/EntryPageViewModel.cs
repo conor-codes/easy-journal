@@ -20,6 +20,9 @@ namespace easy_journal.ViewModels
         private Models.Entry dailyEntry;
 
         [ObservableProperty]
+        private DateTime currentDate = DateTime.Today;
+
+        [ObservableProperty]
         private bool isLoadingQuote;
 
         [ObservableProperty]
@@ -99,21 +102,6 @@ namespace easy_journal.ViewModels
             finally
             {
                 IsProcessingEntry = false;
-            }
-        }
-
-        [RelayCommand]
-        private async Task RefreshQuote()
-        {
-            IsLoadingQuote = true;
-
-            try
-            {
-                DailyQuote = await _quoteService.GetRandomQuote();
-            }
-            finally
-            {
-                IsLoadingQuote = false;
             }
         }
     }

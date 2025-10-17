@@ -1,7 +1,7 @@
 ﻿using easy_journal.Extensions;
 using easy_journal.Services.Database;
-using easy_journal.Servicess.Http;
-using easy_journal.Servicess.Quote.Models;
+using easy_journal.Services.Http;
+using easy_journal.Services.Quote.Models;
 
 namespace easy_journal.Services.Quote
 {
@@ -11,29 +11,29 @@ namespace easy_journal.Services.Quote
         private readonly IDatabaseService _database;
         private const string BASE_URL = "https://api.quotable.io";
 
-        private readonly static List<Models.Quote> _fallbacksQuotes = new()
+        private readonly static List<easy_journal.Models.Quote> _fallbacksQuotes = new()
         {
-            new Models. Quote
+            new easy_journal.Models.Quote
             {
                 Content = "The only way to do great work is to love what you do.",
                 Author = "Steve Jobs"
             },
-            new Models. Quote
+            new easy_journal.Models.Quote
             {
                 Content = "Code is like humor. When you have to explain it, it's bad.",
                 Author = "Cory House"
             },
-            new Models.Quote
+            new easy_journal.Models.Quote
             {
                 Content = "First, solve the problem. Then, write the code.",
                 Author = "John Johnson"
             },
-            new Models.Quote
+            new easy_journal.Models.Quote
             {
                 Content = "Make it work, make it right, make it fast.",
                 Author = "Kent Beck"
             },
-            new Models.Quote
+            new easy_journal.Models.Quote
             {
                 Content = "Simplicity is the soul of efficiency.",
                 Author = "Austin Freeman"
@@ -46,7 +46,7 @@ namespace easy_journal.Services.Quote
             _database = database;
         }
 
-        public async Task<Models.Quote> GetQuoteOfTheDay()
+        public async Task<easy_journal.Models.Quote> GetQuoteOfTheDay()
         {
             var today = DateTime.Today.ToDatabaseDateString();
 
@@ -64,12 +64,21 @@ namespace easy_journal.Services.Quote
             return quote;
         }
 
-        public async Task<Models.Quote> GetRandomQuote()
+        public async Task<easy_journal.Models.Quote> GetRandomQuote()
         {
             try
             {
                 var response = await _httpService.GetAsync<QuotableResponse>($"{BASE_URL}/random");
+
+                // Validate response
+                if (response == null || string.IsNullOrEmpty(response.Content))
+                {
+                    System.Diagnostics.Debug.WriteLine("API returned invalid response");
+                    return GetFallbackQuote();
+                }
+
                 return MapToQuote(response);
+
             }
             catch (Exception ex)
             {
@@ -79,16 +88,16 @@ namespace easy_journal.Services.Quote
             }
         }
 
-        private Models.Quote MapToQuote(QuotableResponse response)
+        private easy_journal.Models.Quote MapToQuote(QuotableResponse response)
         {
-            return new Models.Quote
+            return new easy_journal.Models.Quote
             {
                 Content = response.Content,
                 Author = response.Author
             };
         }
 
-        private Models.Quote GetFallbackQuote()
+        private easy_journal.Models.Quote GetFallbackQuote()
         {
             return _fallbacksQuotes[Random.Shared.Next(_fallbacksQuotes.Count)];
         }

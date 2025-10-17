@@ -31,29 +31,28 @@
                 StrokeShape="RoundRectangle 10"
                 BackgroundColor="#FAFAFA">
 
-            <Grid ColumnDefinitions="*,*" 
-                  RowDefinitions="*,*">
+            <Grid ColumnDefinitions="*" 
+                  RowDefinitions="Auto,*,Auto">
 
                 <Label Text="Quote of the day"
                        TextTransform="Uppercase"
                        FontAttributes="Bold"
                        FontSize="12"
-                       TextColor="#666666"/>
+                       TextColor="#666666"
+                       Grid.Row="0"/>
 
                 <Label Text="{Binding DailyQuote.Content, StringFormat='&quot;{0}&quot;'}"
                        TextColor="#666666"
-                       FontAttributes="Italic "
+                       FontAttributes="Italic"
                        VerticalOptions="Center"
-                       Grid.ColumnSpan="2"
-                       Grid.RowSpan="2"/>
+                       Grid.Row="1"/>
 
-                <Label Text="{Binding DailyQuote.Author, StringFormat='-- {0}'}"
+                <Label Text="{Binding DailyQuote.Author, StringFormat='— {0}'}"
                        TextColor="#666666"
                        FontAttributes="Italic"  
                        VerticalOptions="End"
                        HorizontalOptions="End"
-                       Grid.Row="2"
-                       Grid.Column="2"/>
+                       Grid.Row="2"/>
             </Grid>
         </Border>
 
@@ -66,19 +65,31 @@
         <Border HeightRequest="300" 
                 Stroke="#E0E0E0"
                 Padding="20"
+                HorizontalOptions="FillAndExpand"
                 StrokeShape="RoundRectangle 10"
                 BackgroundColor="#FAFAFA">
 
             <Editor Text="{Binding DailyEntry.Content}"
-                   Placeholder="Whats on your mind today?"
-                   TextColor="#666666"
-                   BackgroundColor="#FAFAFA"
-                   HorizontalOptions="Fill"/>
+                Placeholder="What's on your mind today?"
+                PlaceholderColor="#AAAAAA"
+                TextColor="#666666"
+                BackgroundColor="Transparent"
+                MaxLength="5000"
+                AutoSize="TextChanges" 
+                VerticalTextAlignment="Start"
+                HorizontalTextAlignment="Start"/>
+           
         </Border>
 
-        <Label Text="0 / 5000 characters"
-               TextColor="#888888"
-               HorizontalOptions="End"/>
+        <HorizontalStackLayout HorizontalOptions="End" Spacing="15">
+            <Label Text="{Binding DailyEntry.CharacterCount, StringFormat='✏️ {0} / 5000 characters'}"
+                   FontSize="12"
+                   TextColor="#888888"/>
+
+            <Label Text="{Binding DailyEntry.WordCount, StringFormat='💬 {0} words'}"
+                   FontSize="12"
+                   TextColor="#888888"/>  
+        </HorizontalStackLayout>
 
         <Button Text="Save Entry"
                 TextColor="White"

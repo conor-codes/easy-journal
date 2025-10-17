@@ -12,9 +12,9 @@ public partial class EntryPage : ContentPage
 		_viewModel = viewModel;
 	}
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
-		_viewModel.Initialize();
+		await _viewModel.Initialize();
         base.OnAppearing();
     }
 }

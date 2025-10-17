@@ -5,7 +5,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
-namespace easy_journal.Servicess.Http
+namespace easy_journal.Services.Http
 {
 
     public class HttpService : IHttpService

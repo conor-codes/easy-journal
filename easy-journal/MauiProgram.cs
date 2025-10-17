@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using easy_journal.Services.Database;
 using easy_journal.Services.Quote;
-using easy_journal.Servicess.Http;
+using easy_journal.Services.Http;
 
 using easy_journal.ViewModels;
 using easy_journal.Views;
