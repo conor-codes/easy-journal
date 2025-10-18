@@ -56,10 +56,10 @@
             </Grid>
         </Border>
 
-        <!-- Streak Section -->
+        <!-- Streak Section 
         <Label Text="No entry yet today"
                TextColor="#888888"
-               HorizontalOptions="Center"/>
+               HorizontalOptions="Center"/> -->
 
         <!-- Entry Section -->
         <Border HeightRequest="300" 
@@ -76,7 +76,7 @@
                 BackgroundColor="Transparent"
                 MaxLength="5000"
                 AutoSize="TextChanges" 
-                VerticalTextAlignment="Start"
+                VerticalTextAlignment="Justify"
                 HorizontalTextAlignment="Start"/>
            
         </Border>
@@ -91,14 +91,15 @@
                    TextColor="#888888"/>  
         </HorizontalStackLayout>
 
-        <Button Text="Save Entry"
+        <Button Text="Save"
                 TextColor="White"
-                FontSize="17"
+                FontSize="15"
+                Margin="0,10,0,0"
                 FontAttributes="Bold"
                 Command="{Binding SaveEntryCommand}"
                 BackgroundColor="#2A2A2A"
                 HorizontalOptions="Fill"
-                HeightRequest="50"/>
+                HeightRequest="40"/>
 
     </VerticalStackLayout>
 </ContentPage>
